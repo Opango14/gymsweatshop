@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 def Home(request):
@@ -21,7 +23,7 @@ def signup(request):
        
         try:
             if User.objects.get(username=username):
-                messages.warning(request,"Username is Taken")
+                messages.warning(request,"Phone Number is Taken")
                 return redirect('/signup')
            
         except Exception as identifier:
@@ -37,7 +39,7 @@ def signup(request):
         
         myuser=User.objects.create_user(username,email,pass1)
         myuser.save()
-        messages.success(request,"User is Created Please Login")
+        messages.success(request,"user is Created Please Login")
         return redirect('/login')
     return render(request, "signup.html")
 
