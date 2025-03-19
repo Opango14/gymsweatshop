@@ -61,8 +61,12 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
+      
+      {% if not request.user.is_authenticated %}
       <a class="btn-getstarted" href="/signup">Sign In</a>
+      {% else %}
+      <a class="btn-getstarted" href="/logout">Logout</a>
+      {% endif %}
 
     </div>
   </header>
