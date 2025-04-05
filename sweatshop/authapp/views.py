@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from authapp.models import Contact
+from authapp.models import Contact,MembershipPlan,Trainer
 
 # Create your views here.
 def Home(request):
@@ -41,7 +41,7 @@ def signup(request):
         
         myuser=User.objects.create_user(username,email,pass1)
         myuser.save()
-        messages.success(request,"user is Created Please Login")
+        messages.success(request,"User is Created Please Login")
         return redirect('/login')
     return render(request, "signup.html")
 
@@ -75,3 +75,9 @@ def contact(request):
         messages.info(request,"Thanks for contacting us, we will get back to you soon.")
         return redirect('/contact')
     return render(request, "contact.html")
+
+def enroll(request):
+    Membership=MembershipPlan.objects.all()
+    SelectTrainer=Trainer.objects.all()
+    context={"Membership":Membership,"SelectTrainer":SelectTrainer}
+    return render(request,"enroll.html",context)
