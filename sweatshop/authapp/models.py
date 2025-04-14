@@ -24,7 +24,7 @@ class Enrollment(models.Model):
     PaymentStatus=models.CharField(max_length=55,blank=True,null=True)
     Price=models.IntegerField(blank=True,null=True)
     DueDate=models.DateTimeField(blank=True,null=True)
-    timeStamp=models.DateTimeField(auto_now_add=True,blank=True)
+    TimeStamp=models.DateTimeField(auto_now_add=True,blank=True)
     def __str__(self):
         return self.Fullname
 

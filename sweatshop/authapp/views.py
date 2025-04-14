@@ -8,6 +8,16 @@ from authapp.models import Contact,MembershipPlan,Trainer,Enrollment
 def Home(request):
     return render(request, "index.html")
 
+def profile(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Please Login and Try Again")
+        return redirect('/login')
+    user_phone=request.user
+    posts=Enrollment.objects.filter(PhoneNumber=user_phone)
+    print(posts)
+    context={"posts":posts}
+    return render(request, "profile.html",context)
+
 def signup(request):
     if request.method=="POST":
         username=request.POST.get('usernumber')

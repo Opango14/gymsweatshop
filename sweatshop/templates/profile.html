@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Profile
+{% endblock title %}
+{% block head %}
+    <h1>Your Profile</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-8">
+
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    <strong></strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+                {% comment %} Profile Code {% endcomment %}
+
+                {% for post in posts %}
+                <ul class="list-group">
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Name : {{post.Fullname}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Email : {{post.Email}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Gender : {{post.Gender}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>PhoneNumber : {{post.PhoneNumber}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>DOB : {{post.DOB}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>SelectMembershipPlan : {{post.SelectMembershipPlan}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>SelectTrainer : {{post.SelectTrainer}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Reference : {{post.Reference}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Address : {{post.Address}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Payment Status : {{post.PaymentStatus}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Amount Paid : {{post.Price}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Due Date : {{post.DueDate}}</h6></li>
+                    <li class="list-group-item bg-dark text-white mt-2"><h6>Joining Date : {{post.TimeStamp}}</h6></li>
+                  </ul>
+                {% endfor %}
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+{% endblock head %}
