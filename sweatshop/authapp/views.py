@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from authapp.models import Contact,MembershipPlan,Trainer
+from authapp.models import Contact,MembershipPlan,Trainer,Enrollment
 
 # Create your views here.
 def Home(request):
@@ -77,7 +77,24 @@ def contact(request):
     return render(request, "contact.html")
 
 def enroll(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Please Login and Try Again")
+        return redirect('/login')
     Membership=MembershipPlan.objects.all()
     SelectTrainer=Trainer.objects.all()
     context={"Membership":Membership,"SelectTrainer":SelectTrainer}
+    if request.method=="POST":
+        Fullname=request.POST.get('Fullname')
+        Email=request.POST.get('Email')
+        Gender=request.POST.get('Gender')
+        PhoneNumber=request.POST.get('PhoneNumber')
+        DOB=request.POST.get('DOB')
+        member=request.POST.get('member')
+        trainer=request.POST.get('trainer')
+        reference=request.POST.get('reference')
+        address=request.POST.get('address')
+        query=Enrollment(Fullname=Fullname,Email=Email,Gender=Gender,PhoneNumber=PhoneNumber,DOB=DOB,SelectMembershipPlan=member,SelectTrainer=trainer,Reference=reference,Address=address)
+        query.save()
+        messages.success(request,"Thank you for enrolling. We're excited to have you on board!")
+        return redirect('/enroll')
     return render(request,"enroll.html",context)

@@ -4,6 +4,7 @@
 {% endblock title %}
 {% block head %}
     <h1>Enroll With Us</h1>
+
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-3"></div>
@@ -17,13 +18,13 @@
                 {% endfor %}
 
                 <!-- Contact Us Code -->
-                <form action="" method="post">{% csrf_token %}
+                <form action="/enroll" method="post">{% csrf_token %}
                     <div class="form-group">
                         <input type="text" class="form-control" name="Fullname" placeholder="Enter Your Full Name" required>
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control mt-2" value="{{user.email}}"name="Email" placeholder="Enter Your Email" required>
+                        <input type="email" class="form-control mt-2" value="{{user.email}}"name="Email" placeholder="Enter Your Email" readonly required>
                     </div>
 
                     <div class="form-group">
@@ -35,7 +36,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <input type="number" class="form-control mt-2" name="PhoneNumber" placeholder="Enter Your Number" required>
+                        <input type="number" class="form-control mt-2" value="{{user.username}}" name="PhoneNumber" placeholder="Enter Your Number" readonly required>
                     </div>
 
                     <div class="form-group">
@@ -43,16 +44,16 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control mt-2" id="domain" name="domain" required>
+                        <select class="form-control mt-2" id="member" name="member" required>
                             <option selected>Select Membership Plan</option>
                                 {% for p in Membership%}
-                                <option value="{{p.plan}}">{{p.plan}} - Kshs {{p.price}}</option>></option>
+                                <option value="{{p.plan}} - Kshs {{p.price}}">{{p.plan}} - Kshs {{p.price}}</option>></option>
                                 {% endfor %}
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control mt-2" id="domain" name="domain" required>
+                        <select class="form-control mt-2" id="trainer" name="trainer" required>
                             <option selected>Select Trainer</option>
                                 {% for p in SelectTrainer%}
                                 <option value="{{p.name}}">{{p.name}}</option>></option>
