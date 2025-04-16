@@ -8,6 +8,11 @@ from authapp.models import Contact,MembershipPlan,Trainer,Enrollment
 def Home(request):
     return render(request, "index.html")
 
+def gallery(request):
+    posts=Gallery.objects.all()
+    context={"posts":posts}
+    return render(request, "gallery.html",context)
+
 def profile(request):
     if not request.user.is_authenticated:
         messages.warning(request,"Please Login and Try Again")
