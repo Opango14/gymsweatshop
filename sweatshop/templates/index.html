@@ -53,16 +53,15 @@
             <ul>
             {% if not request.user.is_authenticated %}
               <li><a href="/login">Enroll</a></li>
-              <li><a href="/login">Workouts</a></li>
+              <li><a href="/login">Attendance</a></li>
               <li><a href="/login">View Profile</a></li>
             {% else %}
               <li><a href="/enroll">Enroll</a></li>
-              <li><a href="#">Workouts</a></li>
+              <li><a href="/attendance">Attendance</a></li>
               <li><a href="/profile">View Profile</a></li>
             {% endif %}
             </ul>
           </li>
-          <li><a href="/achievements">Gym Awards</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

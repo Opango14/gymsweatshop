@@ -50,3 +50,13 @@ class Gallery(models.Model):
     timeStamp=models.DateTimeField(auto_now_add=True,blank=True)
     def __str__(self):
         return self.id
+
+class Attendance(models.Model):
+    SelectDate=models.DateTimeField(auto_now_add=True)
+    phonenumber=models.CharField(max_length=15)
+    Login=models.CharField(max_length=200)
+    Logout=models.CharField(max_length=200)
+    SelectWorkout=models.CharField(max_length=200)
+    TrainedBy=models.CharField(max_length=200)
+    def __str__(self):
+        return self.id
